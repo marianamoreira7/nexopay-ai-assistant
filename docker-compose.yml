@@ -1,0 +1,23 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: nexopay-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nexopay}
+      POSTGRES_USER: ${POSTGRES_USER:-nexopay}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no .env}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DATABASE_URL: ${NEXOPAY_DATABASE_URL:?Defina DATABASE_URL no .env}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?Set ANTHROPIC_API_KEY in .env}
+
+volumes:
+  postgres_data:
