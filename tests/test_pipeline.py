@@ -11,7 +11,7 @@ def test_answer_puts_faq_in_system_prompt(monkeypatch):
 
     monkeypatch.setattr(pipeline, "ask_llm", fake_ask_llm)
 
-    assert pipeline.answer_v2("Quanto custa o Pix?") == "ok"
+    assert pipeline.answer("Quanto custa o Pix?") == "ok"
     assert "NexoPay" in captured["system"]
     assert captured["question"] == "Quanto custa o Pix?"
 
@@ -22,4 +22,4 @@ def test_answer_returns_fallback_when_llm_fails(monkeypatch):
 
     monkeypatch.setattr(pipeline, "ask_llm", boom)
 
-    assert pipeline.answer_v2("oi") == pipeline.FALLBACK
+    assert pipeline.answer("oi") == pipeline.FALLBACK
