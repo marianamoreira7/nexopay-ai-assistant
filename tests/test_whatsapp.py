@@ -9,4 +9,4 @@ def test_whatsapp_webhook():
     response = client.post("/webhook/whatsapp", data={"Body": "oi", "From":"whatsapp:+5553984034269"},
                            )
     assert response.status_code == 200
-    assert "Recebi: oi" in response.text
+    assert "Voce perguntou: oi" in response.text
