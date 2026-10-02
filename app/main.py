@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Form, Response
+from twilio.twiml.messaging_response import MessagingResponse
 
 app = FastAPI()
 
@@ -6,3 +7,10 @@ app = FastAPI()
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.post("/webhook/whatsapp")
+async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
+    resp = MessagingResponse()
+    resp.message(f"Recebi: {Body}")
+    return Response(content=str(resp), media_type="application/xml")
