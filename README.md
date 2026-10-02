@@ -42,6 +42,16 @@ Nunca commite o `.env`.
 
 ## Rodando
 
+Com Docker Compose, depois de preencher o .env:
+
+```powershell
+docker compose up --build -d
+```
+
+O serviço fica disponível em `http://127.0.0.1:8000`. Para parar, execute `docker compose down`.
+
+Sem Docker, execute localmente:
+
 ```powershell
 uvicorn app.main:app --reload
 ```
