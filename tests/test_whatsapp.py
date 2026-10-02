@@ -6,7 +6,7 @@ client = TestClient(app)
 
 
 def test_whatsapp_webhook(monkeypatch):
-    monkeypatch.setattr("app.main.answer", lambda q: f"resposta para: {q}")
+    monkeypatch.setattr("app.main.answer_v2", lambda q: f"resposta para: {q}")
 
     response = client.post(
         "/webhook/whatsapp",
