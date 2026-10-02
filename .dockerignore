@@ -4,3 +4,9 @@
 __pycache__
 *.py[cod]
 .pytest_cache
+@"
+*.pyc
+.idea/
+.vscode/
+"@ | Set-Content .gitignore
+learn.md
