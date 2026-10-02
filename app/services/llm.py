@@ -1,16 +1,14 @@
-
 import logging
 import os
 
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
-from app.rag.loader import load_faq
-
 load_dotenv()
 logger = logging.getLogger(__name__)
 
 MODEL = os.getenv("LLM_MODEL", "claude-haiku-4-5-20251001")
+
 
 def build_system_prompt(faq: str) -> str:
     return f"""Você é o assistente de atendimento da NexoPay,
