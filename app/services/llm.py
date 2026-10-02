@@ -2,7 +2,6 @@
 import logging
 import os
 
-from google import genai
 from anthropic import Anthropic
 from dotenv import load_dotenv
 
@@ -12,12 +11,6 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 MODEL = os.getenv("LLM_MODEL", "claude-haiku-4-5-20251001")
-
-FALLBACK = (
-    "Desculpe, tive um problema para responder agora. "
-    "Tente novamente em instantes."
-)
-
 
 def build_system_prompt(faq: str) -> str:
     return f"""Você é o assistente de atendimento da NexoPay,
