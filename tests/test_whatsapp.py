@@ -5,8 +5,13 @@ from app.main import app
 client = TestClient(app)
 
 
-def test_whatsapp_webhook():
-    response = client.post("/webhook/whatsapp", data={"Body": "oi", "From":"whatsapp:+5553984034269"},
-                           )
+def test_whatsapp_webhook(monkeypatch):
+    monkeypatch.setattr("app.main.answer_v2", lambda q: f"resposta para: {q}")
+
+    response = client.post(
+        "/webhook/whatsapp",
+        data={"Body": "oi", "From": "whatsapp:+5551999999999"},
+    )
+
     assert response.status_code == 200
-    assert "Voce perguntou: oi" in response.text
+    assert "resposta para: oi" in response.text
