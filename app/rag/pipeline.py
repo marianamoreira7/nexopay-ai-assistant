@@ -23,6 +23,6 @@ def answer_v2(question: str) -> str:
         return ask_llm(system, question)
 
     except Exception:
-        logger.exception("Falha ao chamar o Gemini")
+        logger.exception("Falha ao chamar a LLM")
         return FALLBACK
     
