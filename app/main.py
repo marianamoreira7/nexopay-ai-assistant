@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Form, Response
 from twilio.twiml.messaging_response import MessagingResponse
-from app.rag.pipeline import answer, answer_v2
+
+from app.rag.pipeline import answer_v2
 
 app = FastAPI()
 

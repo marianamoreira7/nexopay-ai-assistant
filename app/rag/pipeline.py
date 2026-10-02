@@ -5,16 +5,16 @@ from app.services.llm import ask_llm, build_system_prompt
 
 
 def answer(question: str) -> str:
-    faq=load_faq()
+    faq = load_faq()
     return f"[teste] Voce perguntou: {question} faq carregado {len(faq)} caractteres"
 
 
 FALLBACK = (
-    "Desculpe, tive um problema para responder agora. "
-    "Tente novamente em instantes."
+    "Desculpe, tive um problema para responder agora. Tente novamente em instantes."
 )
 
 logger = logging.getLogger(__name__)
+
 
 def answer_v2(question: str) -> str:
     system = build_system_prompt(load_faq())
@@ -25,4 +25,3 @@ def answer_v2(question: str) -> str:
     except Exception:
         logger.exception("Falha ao chamar a LLM")
         return FALLBACK
-    
